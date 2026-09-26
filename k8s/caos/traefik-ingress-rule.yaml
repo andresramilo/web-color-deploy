@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: caos
+  namespace: caos
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: caos.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: caos
+                port:
+                  number: 80
