@@ -2,17 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: webcolor
-  namespace: web-color  
+  namespace: webcolor
 spec:
   ingressClassName: traefik
   rules:
-  - host: webcolor.localhost
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: webcolor
-            port:
-              number: 80
+    - host: webcolor.localhost
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webcolor
+                port:
+                  number: 80
