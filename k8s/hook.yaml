@@ -1,10 +1,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: pre-sync-
+  name: pre-sync
+  #generateName: pre-sync-
   annotations:
     argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   backoffLimit: 0
   template:
@@ -28,10 +30,12 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: sync-
+  name: sync
+  #generateName: sync-
   annotations:
     argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   backoffLimit: 0
   template:
@@ -55,10 +59,12 @@ spec:
 apiVersion: batch/v1
 kind: Job
 metadata:
-  generateName: post-sync-
+  name: post-sync
+  #generateName: post-sync-
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    #argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
 spec:
   backoffLimit: 0
   template:
