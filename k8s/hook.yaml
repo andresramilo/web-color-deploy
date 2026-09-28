@@ -6,19 +6,24 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
+  backoffLimit: 0
   template:
     spec:
+      restartPolicy: Never
       containers:
         - name: chamada
-          image: curlimages/curl:latest
-          command:
-            - /bin/sh
-            - -c
-            - |
-              curl -X POST -H "Content-Type: application/json" \
-              -d '{message: "Entrou em Pre Sync !!!"}' \
-              https://webhook.site/2a980fe6-4eaf-4245-8060-a107c3198904
-      restartPolicy: Never
+          image: curlimages/curl:8.10.1
+          command: ["curl"]
+          args:
+            - -sS
+            - --fail-with-body
+            - -X
+            - POST
+            - -H
+            - "Content-Type: application/json"
+            - -d
+            - '{"message": "Entrou em Pre Sync !!!"}'
+            - https://webhook.site/2a980fe6-4eaf-4245-8060-a107c3198904
 ---
 apiVersion: batch/v1
 kind: Job
@@ -28,19 +33,24 @@ metadata:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
+  backoffLimit: 0
   template:
     spec:
+      restartPolicy: Never
       containers:
         - name: chamada
-          image: curlimages/curl:latest
-          command:
-            - /bin/sh
-            - -c
-            - |
-              curl -X POST -H "Content-Type: application/json" \
-              -d '{message: "Entrou em Sync !!!"}' \
-              https://webhook.site/2a980fe6-4eaf-4245-8060-a107c3198904
-      restartPolicy: Never
+          image: curlimages/curl:8.10.1
+          command: ["curl"]
+          args:
+            - -sS
+            - --fail-with-body
+            - -X
+            - POST
+            - -H
+            - "Content-Type: application/json"
+            - -d
+            - '{"message": "Entrou em Sync !!!"}'
+            - https://webhook.site/2a980fe6-4eaf-4245-8060-a107c3198904
 ---
 apiVersion: batch/v1
 kind: Job
@@ -50,16 +60,21 @@ metadata:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
+  backoffLimit: 0
   template:
     spec:
+      restartPolicy: Never
       containers:
         - name: chamada
-          image: curlimages/curl:latest
-          command:
-            - /bin/sh
-            - -c
-            - |
-              curl -X POST -H "Content-Type: application/json" \
-              -d '{message: "Entrou em PostSync !!!"}' \
-              https://webhook.site/2a980fe6-4eaf-4245-8060-a107c3198904
-      restartPolicy: Never
+          image: curlimages/curl:8.10.1
+          command: ["curl"]
+          args:
+            - -sS
+            - --fail-with-body
+            - -X
+            - POST
+            - -H
+            - "Content-Type: application/json"
+            - -d
+            - '{"message": "Entrou em PostSync !!!"}'
+            - https://webhook.site/2a980fe6-4eaf-4245-8060-a107c3198904
