@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: mongodb
   annotation:
-    argocd.argoproj.io/sync-wave: -1
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   selector:
     matchLabels:
@@ -29,7 +29,7 @@ kind: Service
 metadata:
   name: mongodb-service
   annotation:
-    argocd.argoproj.io/sync-wave: -1
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   selector:
     app: mongodb
@@ -43,7 +43,7 @@ kind: Deployment
 metadata:
   name: movies
   annotation:
-    argocd.argoproj.io/sync-wave: 0
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   selector:
     matchLabels:
@@ -75,7 +75,7 @@ kind: Service
 metadata:
   name: movies
   annotation:
-    argocd.argoproj.io/sync-wave: 0
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   selector:
     app: movies
@@ -90,7 +90,7 @@ metadata:
   name: review-filmes
   namespace: review
   annotation:
-    argocd.argoproj.io/sync-wave: 0
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   ingressClassName: traefik
   rules:
